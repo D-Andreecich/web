@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+     //инициализация Firebase
+        var config = {
+            apiKey: "AIzaSyA6SphhfJVp-jMCw7hZrsglfMOJx596Gb0",
+            databaseURL: "https://hktk-ntu-hpi.firebaseio.com/"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+<body>
+
+<div>
+    <ul id="list">
+    </ul>
+	<!--<label class="inlinelabel" for='includeinscription'>Добавить промокод </label> 
+	<input type= "checkbox" id = 'test' value = '999' >
+	<input type="text" id="nameInput" placeholder="Enter a name to change or edit">
+	
+    <input type="text" id="valueInput" placeholder="Enter a price">
+    <br><br>
+	-->
+    <input type="text" id="delInput" placeholder="Enter a name to delete">
+</div>
+<script>
+    //ссылка на базу данных
+    var db = firebase.database();
+   
+//--------------------------------------------------------------------------------------------
+   //для примера получим один элемент из бд и выведем его ключ и значение в консоль
+    db.ref('pc3/hdd').on("value", function(data){
+        console.log('Ключ: '+data.key+' Значение: '+data.val());
+    });
+    //получим нужный нам список в бд (по его ключу)
+    var listRef = db.ref('pc3');
+    //добавление элемента в отображение
+    function addItem(item) {
+        //cоздание новый элемент списка с данными из аргумента (каждый item состоит из ключа и значения)
+        var newItem = '<li name="'+item.key+'" >Price for '+item.key+' is '+item.val()+'</li>';
+        //добавление элемента списка в список
+        document.querySelector('#list').innerHTML += newItem;
+    }
+    //удаление элемента из отображения
+    function deleteItem(item) {
+//получили удаляемый элемент
+        var element = document.querySelector('#list li[name="'+item.key+'"]');
+//заставили родителя его удалить
+        element.parentElement.removeChild(element);
+    }
+    //изменение отображения элемента (можно сделать без удаления)
+    function changeItem(item) {
+        //получили измененный элемент
+        var element = document.querySelector('#list li[name="'+item.key+'"]');
+        //удалили его предыдущее отображение
+        element.parentElement.removeChild(element);
+        //добавили заново
+        addItem(item);
+    }
+    //добавление "слушателей" событий
+    //если в бд что-то добавили
+    listRef.on('child_added', function (data) {
+        addItem(data);
+    });
+    //если в бд что-то изменили
+    listRef.on('child_changed', function(data) {
+        changeItem(data);
+    });
+    //если из бд что-то удалили
+    listRef.on('child_removed', function(data) {
+        deleteItem(data);
+    });
+ /*   //когда пользователь нажимает Enter внутри второго input, добавим новые данные в бд
+    var listInput = document.querySelector("#valueInput");
+    listInput.onkeypress = function (e) {
+        if (e.keyCode === 13)
+        {
+//получаем то, что ввел пользователь
+            var newValue = Number(listInput.value);
+            var name = document.querySelector("#nameInput").value;
+            if (name.length === 0)
+                return;
+//если такого ключа в списке нет - добавляем данные с ключом name и значение newValue в нужный узел в бд
+//если такой ключ есть - обновляем значение
+            db.ref('pc3/'+name).set(newValue);
+        }
+    };
+	*/
+    //когда пользователь нажимает Enter внутри третьего input, удалим данные из бд
+    var delInput = document.querySelector("#delInput");
+    delInput.onkeypress = function (e) {
+        if (e.keyCode === 13)
+        {
+            var name = delInput.value;
+            if (name.length === 0)
+                return;
+//удаляем данные с введенным ключом
+            db.ref('pc3/'+name).remove();
+        }
+    };
+</script>
+
+
+</body>
+</html>

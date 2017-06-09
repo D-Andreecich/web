@@ -1,0 +1,71 @@
+#wrap {
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 8px;
+  padding: 5px;
+  background: #fff;
+  font-family: AvenirLTStd, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+#wrap legend {
+  font-size: 16px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #000;
+  font-weight: bold;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+#wrap label {
+  display: block;
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
+}
+
+#wrap label.inlinelabel {
+  display: inline;
+}
+
+#wrap input[type="radio"] {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#wrap input[type="text"]:hover,
+#wrap input[type="text"]:active {
+  background-color: #FAF398;
+}
+
+#wrap div#totalPrice {
+  padding: 10px;
+  font-weight: bold;
+  background-color: #ff0;
+}
+
+#wrap label.radiolabel {
+  font-weight: normal;
+  display: inline;
+}
+
+.design {
+    display: inline-block; /* Строчно-блочный элемент */
+    padding: 5px 20px; /* Добавляем поля */
+    text-decoration: none; /* Убираем подчёркивание у ссылки */
+    cursor: pointer; /* Курсор в виде руки */
+    background: #deefff; /* Фон для браузеров, не поддерживающих градиент */
+    /* Градиент */
+    background: -moz-linear-gradient(top, #deefff 0%, #98bede 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#deefff), color-stop(100%,#98bede));
+    background: -webkit-linear-gradient(top, #deefff 0%,#98bede 100%);
+    background: -o-linear-gradient(top, #deefff 0%,#98bede 100%);
+    background: -ms-linear-gradient(top, #deefff 0%,#98bede 100%);
+    background: linear-gradient(top, #deefff 0%,#98bede 100%);
+    border-radius: 10px; /* Скругляем уголки */
+    border: 1px solid #008; /* Добавляем синюю рамку */
+    font: 12px/1 Arial, sans-serif; /* Рубленый шрифт */
+    color: #2c539e; /* Цвет текста и ссылки */
+   }

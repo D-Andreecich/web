@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Войти</title>
+</head>
+<body>
+<form  id="sign">
+<div>
+    <span id="loginShow">Введите логин и пароль для входа</span>
+<div id="login">
+    <input type="text" id="username" placeholder="username">
+    <input type="password" id="password" placeholder="password">
+    <button id="authAction" onclick="sign_in()">Войти</button>
+    <div id="loginResult">
+        <!-- Тут мы будем отображать ответ сервера 
+		'location.href="http://codehelper.ru/"'-->
+    </div>
+</div>
+</div>
+</form>
+<script>
+//<----------sign_in--------------
+//var signForm = document.getElementById("sign");
+	function sign_in(){
+	var login = document.getElementById('username').value;
+	var pass = document.getElementById('password').value;
+	console.log('login',login);
+	console.log('pass',pass);
+	if(login == 'admin' && pass == 'admin'){
+		alert('good!');
+		window.open("Firebase.html");
+		//window.location = "Firebase.html";
+	}else{
+			alert('Неверный логин или пароль!\nПовторите ввод!');
+			}
+		}
+</script>
+
+</body>
+</html>
